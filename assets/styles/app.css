@@ -1,0 +1,8 @@
+body {
+    background-color: lightgray;
+}
+
+.dashboard-container {
+    margin: 100px;
+    border: 1px solid black;
+}
