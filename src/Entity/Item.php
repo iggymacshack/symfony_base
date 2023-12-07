@@ -35,6 +35,12 @@ class Item
     #[ORM\ManyToOne]
     private ?WeaponAttackSpeed $attackSpeed = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $armorRating = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $attackRating = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +126,30 @@ class Item
     public function setAttackSpeed(?WeaponAttackSpeed $attackSpeed): static
     {
         $this->attackSpeed = $attackSpeed;
+
+        return $this;
+    }
+
+    public function getArmorRating(): ?int
+    {
+        return $this->armorRating;
+    }
+
+    public function setArmorRating(?int $armorRating): static
+    {
+        $this->armorRating = $armorRating;
+
+        return $this;
+    }
+
+    public function getAttackRating(): ?int
+    {
+        return $this->attackRating;
+    }
+
+    public function setAttackRating(?int $attackRating): static
+    {
+        $this->attackRating = $attackRating;
 
         return $this;
     }
