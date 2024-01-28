@@ -20,6 +20,7 @@
                     <th>Nom</th>
                     <th>Rareté</th>
                     <th>Type</th>
+                    <th></th>
                 </tr>
                 {% for item in array %}
                 <tr onclick="clickOnRow(self)">
@@ -27,10 +28,10 @@
                     <td class="arrayName">{{item.name}}</td>
                     <td class="arrayRarity">{{item.rarity}}</td>
                     <td class="arrayType">{{item.itemType}}</td>
+                    <td><a href="http://localhost/symfony_projet/public/item/view/{{item.id}}">Voir l'objet</a></td>
                 </tr>
                 {% endfor %}
         </div>
     </div>
-    <div id="allItems"></div>
 </div>
 {% endblock %}

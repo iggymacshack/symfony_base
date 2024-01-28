@@ -108,5 +108,12 @@ body {
 }
 
 .bold {
-    font-weight: bold;
+    font-weight: bolder;
+}
+
+.headerTitle {
+    font-size: larger;
+    font-weight: bolder;
+    vertical-align:middle;
+    text-align: center;
 }

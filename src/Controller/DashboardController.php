@@ -15,7 +15,7 @@ class DashboardController extends AbstractController
         $itemCount = $em->getRepository(Item::class)->itemCount();
         $legCount = $em->getRepository(Item::class)->itemCountByRarity(8);
         $epiCount = $em->getRepository(Item::class)->itemCountByRarity(7);
-        $itemList = $em->getRepository(Item::class)->findNewest(10);
+        $itemList = $em->getRepository(Item::class)->findNewest(5);
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
             'list' => $itemList,

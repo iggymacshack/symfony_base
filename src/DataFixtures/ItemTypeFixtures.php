@@ -21,6 +21,10 @@ class ItemTypeFixtures extends Fixture
             'Marteau',
             'Marteu de guerre',
             'Rapière',
+            "Plastron",
+            'Casque',
+            'Jambière',
+            'Gants',
         ];
  
         foreach ($array as $key => $value) {
