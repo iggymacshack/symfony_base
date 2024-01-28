@@ -1,7 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DashboardController!{% endblock %}
+{% block title %}Tableau de bord{% endblock %}
 
 {% block body %}
-<div class="">ccaca</div>
+{% set array = list %}
+<div class="column">
+    <div class="row">
+        <div id="dbStats" class="column">
+            <span>Statistiques globales</span>
+            <span>Quantité d'objets : {{ count }}</span>
+            <span>Objets légendaires : {{ legCount }}</span>
+            <span>Objets épiques : {{ epiCount }}</span>
+        </div>
+        <div id="newestItems" class="column">
+            <span>Nouveaux items</span>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Rareté</th>
+                    <th>Type</th>
+                </tr>
+                {% for item in array %}
+                <tr onclick="clickOnRow(self)">
+                    <td class="arrayId">{{item.id}}</td>
+                    <td class="arrayName">{{item.name}}</td>
+                    <td class="arrayRarity">{{item.rarity}}</td>
+                    <td class="arrayType">{{item.itemType}}</td>
+                </tr>
+                {% endfor %}
+        </div>
+    </div>
+    <div id="allItems"></div>
+</div>
 {% endblock %}

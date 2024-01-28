@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Liste des items{% endblock %}
+ 
+{% block body %}
+    <script>
+        function clickOnRow(value) {
+            console.log(value)
+            createItemPreview(value)
+        }
+
+        function createItemPreview(itemRow) {
+            if (itemRow) { // Check if itemRow is not null
+              const itemName = itemRow.getElementsByClassName("arrayName")[0].innerHTML; // Extract item name
+              const finalName = document.getElementById("itemName"); // Get the element with id "itemName"
+              finalName.innerText = itemName; // Set the item name in the "itemName" element
+            }
+          }
+          
+    </script>
+    {% set array = list %}
+    <div class="row">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Rareté</th>
+                <th>Type</th>
+                <th>Vitesse d'attaque</th>
+                <th>Prix</th>
+                <th>Poids</th>
+            </tr>
+            {% for item in array %}
+            <tr onclick="clickOnRow(self)">
+                <td class="arrayId">{{item.id}}</td>
+                <td class="arrayName">{{item.name}}</td>
+                <td class="arrayRarity">{{item.rarity}}</td>
+                <td class="arrayType">{{item.itemType}}</td>
+                <td class="arrayAttackSpeed">{{item.attackSpeed}}</td>
+                <td class="arraySellPrice">{{item.sellPrice}}</td>
+                <td class="arrayWeight">{{item.weight}}</td>
+            </tr>
+                
+            {% endfor %}
+        </table>
+        <div id="itemPreview" class="column">
+            <span id="itemName"></span>
+            <div class="row">
+                <span id="itemType"></span>
+                <span id="itemAttackSpeed"></span>
+            </div>
+            <div class="row">
+                <span id="itemAttack"></span>
+                <span id="itemDefense"></span>
+            </div>
+            <span id="itemFlavorText"></span>
+            <span id="itemWeight"></span>
+            <span id="itemSellPrice"></span>
+        </div>
+    </div>
+    
+{% endblock %}

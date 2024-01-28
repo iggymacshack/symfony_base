@@ -21,6 +21,38 @@ class ItemRepository extends ServiceEntityRepository
         parent::__construct($registry, Item::class);
     }
 
+    public function findAllWithLimit(int $limit):array{
+        return $this->createQueryBuilder("i")
+        ->orderBy('i.id','ASC')
+        ->setMaxResults($limit)
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function findNewest(int $limit):array{
+        return $this->createQueryBuilder("i")
+        ->orderBy('i.id','DESC')
+        ->setMaxResults($limit)
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function itemCount():int{
+        return $this->createQueryBuilder("i")
+        ->select('COUNT(i.id) AS Count')
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
+    public function itemCountByRarity(int $rarity):int{
+        return $this->createQueryBuilder("i")
+        ->select('COUNT(i.id) AS Count')
+        ->andWhere('i.rarity = :rarity')
+        ->setParameter('rarity', $rarity)
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Item[] Returns an array of Item objects
 //     */

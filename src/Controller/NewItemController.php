@@ -28,12 +28,21 @@ class NewItemController extends AbstractController
         ]);
     }
 
+    #[Route('/item/list', name: 'list', methods: ['GET'])]
+    public function list(HttpFoundationRequest $request, EntityManagerInterface $em):Response{
+        $itemList = $em->getRepository(Item::class)->findAllWithLimit(10);
+        return $this->render('list_items/index.html.twig', [
+            'list' => $itemList,
+        ]);
+    }
+
+
     #[Route('/item/new', name: 'creation', methods: ['GET', 'POST'])]
     public function creation(HttpFoundationRequest $request, EntityManagerInterface $em): Response
     {
         $item = new Item();
-        $form = $this->createForm(ItemType::class, $item);
-        $form->handleRequest($request);
+        $formItem = $this->createForm(ItemType::class, $item);
+        $formItem->handleRequest($request);
 
         $weaponas = new WeaponAttackSpeed();
         $formWeaponAS = $this->createForm(WeaponAttackSpeedType::class, $weaponas);
@@ -47,20 +56,17 @@ class NewItemController extends AbstractController
         $formRarity = $this->createForm(RarityType::class, $rarity);
         $formRarity->handleRequest($request);
         
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formItem->isSubmitted() && $formItem->isValid()) {
             $em->persist($item);
             $em->flush();
     
             $this->addFlash('success', 'Item créé!');
-            return $this->redirectToRoute('item');
+            return $this->redirectToRoute('creation');
         }
     
         return $this->render('new_item/index.html.twig', [
             'item' => $item,
-            'form' => $form->createView(),
-            'formRarity' => $form->createView(),
-            'formWeaponAS' => $form->createView(),
-            'formType' => $form->createView()
+            'form' => $formItem->createView(),
         ]);
     }
 }
