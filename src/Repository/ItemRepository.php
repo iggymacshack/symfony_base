@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Item;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Mapping\Entity;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -51,6 +52,15 @@ class ItemRepository extends ServiceEntityRepository
         ->setParameter('rarity', $rarity)
         ->getQuery()
         ->getSingleScalarResult();
+    }
+
+    public function findWithId(int $id):Item {
+        return $this->createQueryBuilder("i")
+        ->setMaxResults(1)
+        ->andWhere('i.id = :id')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getOneOrNullResult();
     }
 
 //    /**

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir item{% endblock %}
+
+{% block body %}
+    <div id="itemPreview" class="column background">
+        {% if item.rarity == "Epique" %}
+            <span id="itemName" class="purple">{{ item.name }}</span>
+        {% elseif item.rarity == "Légendaire" %}
+            <span id="itemName" class="orange">{{ item.name }}</span>
+        {% elseif item.rarity == "Rare" %}
+            <span id="itemName" class="green">{{ item.name }}</span>
+        {% elseif item.rarity == "Commun" %}
+            <span id="itemName" class="white">{{ item.name }}</span>
+        {% endif %}
+        <div class="row spread">
+            <span id="itemType">{{ item.itemType}}</span>
+            <span id="itemAttackSpeed">Vitesse {{ item.attackSpeed }}</span>
+        </div>
+        <div class="row">
+            {% if item.attackRating != null %}
+                <span id="itemAttack">Dégâts : {{ item.attackRating }}</span>
+            {% endif %}
+            {% if item.armorRating != null %}
+                <span id="itemDefense">Armure : {{ item.armorRating }}</span>
+            {% endif %}
+        </div>
+        <span id="itemFlavorText" class="yellow italic">"{{ item.flavorText }}"</span>
+        <span id="itemWeight">Poids : {{ item.weight }}</span>
+        <span id="itemSellPrice">Prix à la vente : {{ item.sellPrice }}</span>
+    </div>
+{% endblock body %}

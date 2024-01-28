@@ -5,15 +5,15 @@
 {% block body %}
 {% set array = list %}
 <div class="column">
-    <div class="row">
-        <div id="dbStats" class="column">
-            <span>Statistiques globales</span>
+    <div class="row big-gap flex-center big-margin">
+        <div id="dbStats" class="dashboardBox column rounded shadow-all">
+            <span class="bold">Statistiques globales</span>
             <span>Quantité d'objets : {{ count }}</span>
             <span>Objets légendaires : {{ legCount }}</span>
             <span>Objets épiques : {{ epiCount }}</span>
         </div>
-        <div id="newestItems" class="column">
-            <span>Nouveaux items</span>
+        <div id="newestItems" class="column dashboardBox rounded shadow-all">
+            <span class="center bold">Nouveaux items</span>
             <table>
                 <tr>
                     <th>ID</th>

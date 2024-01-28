@@ -36,6 +36,13 @@ class NewItemController extends AbstractController
         ]);
     }
 
+    #[Route('/item/view/{id}', name: 'view', methods: ['GET'])]
+    public function view(HttpFoundationRequest $request, EntityManagerInterface $em):Response{
+        $item = $em->getRepository(Item::class)->findWithId(explode("/",$request->getPathInfo())[3]);
+        return $this->render('view_item/index.html.twig', [
+            'item' => $item,
+        ]);
+    }
 
     #[Route('/item/new', name: 'creation', methods: ['GET', 'POST'])]
     public function creation(HttpFoundationRequest $request, EntityManagerInterface $em): Response
